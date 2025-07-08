@@ -1,0 +1,120 @@
+########## --------------- brave AI Agent Project Rules --------------- ##########
+
+## Core Principles
+
+### 0. Coding Style Consistency
+- Always match the existing coding style, conventions, and formatting used in the project when adding, changing, or adjusting code. All code provided must be indistinguishable in style from the original codebase.
+
+### 0a. Question-Only Response
+- When the user starts a message with 'Question' or 'question', respond only with a text answer and do not provide any code or code workout in the response.
+
+### 1. Code Preservation
+- **NEVER** change, update, remove, or adjust existing code unless explicitly requested to solve a specific issue
+- Work within the constraints of the existing codebase
+- Find solutions that complement and work with the current implementation
+- Respect the original architecture and design decisions
+
+### 2. Error Handling Focus
+- Prioritize robust error handling and edge case management
+- Identify potential failure points in existing code
+- Implement defensive programming practices
+- Add comprehensive error logging and monitoring where appropriate
+- Ensure graceful degradation when errors occur
+
+### 3. Problem-Solving Approach
+- Analyze issues systematically before proposing solutions
+- Consider the impact of changes on existing functionality
+- Test solutions thoroughly before implementation
+- Document error handling strategies and recovery procedures
+- Provide clear explanations for error handling decisions
+
+### 4. Code Quality Standards
+- Maintain high code quality without refactoring unnecessarily
+- Follow existing coding patterns and conventions
+- Ensure error handling is consistent across the codebase
+- Add appropriate comments for complex error handling logic
+- Validate inputs and handle edge cases properly
+
+### 5. Communication Guidelines
+- Explain technical decisions clearly and concisely
+- Provide context for error handling approaches
+- Document any assumptions made about existing code
+- Suggest improvements only when directly relevant to solving the current issue
+- Focus on practical, implementable solutions
+
+### 6. Testing and Validation
+- Ensure error handling is properly tested
+- Validate that error conditions are handled correctly
+- Test edge cases and boundary conditions
+- Verify that error recovery mechanisms work as expected
+- Document test cases for error scenarios
+
+### 7. Performance Considerations
+- Ensure error handling doesn't significantly impact performance
+- Use efficient error detection and recovery mechanisms
+- Minimize overhead of error handling code
+- Consider resource cleanup in error scenarios
+
+### 8. Security Awareness
+- Validate and sanitize inputs in error handling
+- Avoid exposing sensitive information in error messages
+- Implement proper authentication and authorization checks
+- Handle security-related errors appropriately
+
+## Response Format
+
+When responding to issues or requests:
+
+1. **Analyze** the existing code and identify the problem
+2. **Explain** the root cause and impact
+3. **Propose** a solution that works with existing code
+4. **Implement** the solution with proper error handling
+5. **Validate** that the solution addresses the issue without breaking existing functionality
+
+## Prohibited Actions
+
+- Refactoring code for "better" design without specific request
+- Changing variable names, function signatures, or class structures
+- Removing or replacing existing functionality
+- Adding new features unless explicitly requested
+- Changing the overall architecture or design patterns
+- Modifying code style or formatting unless it affects functionality
+
+## Required Actions
+
+- Add comprehensive error handling where missing
+- Implement proper input validation
+- Add appropriate logging and monitoring
+- Handle edge cases and boundary conditions
+- Ensure graceful error recovery
+- Document error handling strategies
+- Test error scenarios thoroughly
+
+## GitHub Workflow Rules
+
+### Repository Management
+- Initialize Git repository with remote origin: https://github.com/FLNDRNDev/brave.git
+- Always work with main branch as the primary branch
+- Create feature branches for all future changes and commits
+- Use descriptive branch names based on the change being made
+
+### Commit and Branch Workflow
+- **Initial Setup**: Make initial commit directly to main branch
+- **Future Changes**: 
+  - Create new branch for each change/feature
+  - Use the provided commit text as both commit message and branch name
+  - Push branch to remote repository
+  - Merge back to main when approved
+
+### Branch Naming Convention
+- Use the exact text provided by user as branch name
+- Format: lowercase with hyphens for spaces
+- Example: "add error handling" becomes "add-error-handling"
+
+### Commit Process
+1. Create new branch from main
+2. Make changes to code
+3. Stage and commit with provided text
+4. Push branch to remote
+5. Update change log with branch information
+6. Wait for user approval before merging to main 
