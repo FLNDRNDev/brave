@@ -256,3 +256,20 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     </a>
   </p>
 </div>
+
+## Coderabbit Notes
+
+### Authentication Setup
+- All authentication logic and protected route setup is in the branch: `02-authentication-setup`
+- Main authentication middleware: `src/middleware.ts`
+- Protected routes are defined by their URL path (see middleware for details)
+- Uses Clerk for authentication, but you can swap in your own modals or logic as needed (see code comments)
+
+### How to Test
+- Try to access `/dashboard`, `/playlists`, `/history`, or `/liked` while signed out: you should be redirected to sign in.
+- All protected pages are under the correct Next.js app directory structure.
+
+### Branch Info
+- Branch name: `02-authentication-setup`
+- Commit message: `02: Authentication setup`
+- Merged into `main` after testing and review.
