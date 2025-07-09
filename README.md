@@ -273,3 +273,20 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Branch name: `02-authentication-setup`
 - Commit message: `02: Authentication setup`
 - Merged into `main` after testing and review.
+
+### Database Setup
+- All database schema and Drizzle ORM setup is in the branch: `03-neon-database-setup-with-drizzle-orm`
+- Main database schema: `src/db/schema.ts`
+- Database configuration: `drizzle.config.ts`
+- Database connection: `src/db/index.ts`
+- Uses Neon PostgreSQL with Drizzle ORM for type-safe database operations
+
+### Database Schema
+- Users table with Clerk integration
+- Includes fields: id, clerkId, firstName, lastName, imageUrl, createdAt, updatedAt
+- Unique index on clerkId for efficient lookups
+
+### Branch Info
+- Branch name: `03-neon-database-setup-with-drizzle-orm`
+- Commit message: `03: Neon database setup with Drizzle ORM`
+- Merged into `main` after testing and review.
