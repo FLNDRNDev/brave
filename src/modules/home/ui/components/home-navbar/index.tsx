@@ -1,15 +1,16 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { SearchInput } from './searchInput'
-import { ThemeSwitcher } from '../themeSwitcher'
+import { SearchInput } from './searchInput';
+import { AddFree } from '../add-free';
+import { ThemeSwitcher } from '../themeSwitcher';
 
-import { SidebarTrigger } from '@/components/ui/sidebar'
+import { SidebarTrigger } from '@/components/ui/sidebar';
 
-import { AuthButton } from '@/modules/auth/ui/components/auth-button'
+import { AuthButton } from '@/modules/auth/ui/components/auth-button';
 
 
 export const HomeNavbar = () => {
@@ -55,9 +56,7 @@ export const HomeNavbar = () => {
 					{/* CTA Buttons */}
 					<div className="flex-shrink-0 flex items-center gap-3">
 						{/* TODO: Go add Free button */}	
-
-						{/* Theme Switch button */}
-						<ThemeSwitcher />
+						<AddFree />
 
 						{/* Auth Button */}
 						<AuthButton />

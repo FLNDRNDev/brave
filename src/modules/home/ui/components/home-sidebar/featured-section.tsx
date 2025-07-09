@@ -2,6 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useAuth, useClerk } from '@clerk/nextjs';
+
 import { 
    HistoryIcon, 
    Heart, 
@@ -37,6 +39,9 @@ const items = [
 ];
 
 export const FeaturedChannels = () => {
+   const clerk = useClerk();
+   const { isSignedIn } = useAuth();
+
    return (
       <>
          <SidebarGroup>
@@ -49,7 +54,14 @@ export const FeaturedChannels = () => {
                            asChild
                            tooltip={item.title}
                            isActive={false}        // TODO: Change to look at current pathname
-                           onClick={() => {}}      // TODO: Do something onClick handler
+                           onClick={(e) => {
+                              if (!isSignedIn && item.auth) {
+                                 e.preventDefault();
+                                 
+                                 return clerk.openSignIn();
+                              }
+                           }}
+                           disabled={!isSignedIn && item.auth}
                         >
                            <Link href={item.url} className="flex items-center gap-4">
                               {item.icon}

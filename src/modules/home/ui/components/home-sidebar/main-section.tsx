@@ -2,7 +2,15 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { HomeIcon, Gem, TrendingUp, ShoppingBag, Clock } from 'lucide-react';
+
+import { useAuth, useClerk } from '@clerk/nextjs';
+
+import { 
+   HomeIcon, 
+   Gem, 
+   TrendingUp, 
+   ShoppingBag, 
+   Clock } from 'lucide-react';
 import { 
    SidebarGroup, 
    SidebarGroupContent, 
@@ -47,6 +55,9 @@ const items = [
 ];
 
 export const MainSection = () => {
+   const clerk = useClerk();
+   const { isSignedIn } = useAuth();
+
    return (
       <>
          <SidebarGroup>
@@ -58,7 +69,14 @@ export const MainSection = () => {
                            asChild
                            tooltip={item.title}
                            isActive={false}        // TODO: Change to look at current pathname
-                           onClick={() => {}}      // TODO: Do something onClick handler
+                           onClick={(e) => {
+                              if (!isSignedIn && item.auth) {
+                                 e.preventDefault();
+                                 
+                                 return clerk.openSignIn();
+                              }
+                           }}
+                           disabled={!isSignedIn && item.auth}
                         >
                            {item.external ? (
                               <a
