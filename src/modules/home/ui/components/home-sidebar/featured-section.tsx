@@ -7,7 +7,8 @@ import { useAuth, useClerk } from '@clerk/nextjs';
 import { 
    HistoryIcon, 
    Heart, 
-   List } from 'lucide-react';
+   List, 
+   ClockFading} from 'lucide-react';
 import { 
    SidebarGroup, 
    SidebarGroupContent, 
@@ -21,7 +22,13 @@ const items = [
    {
       title: 'History',
       url: '/playlists/history',
-      icon: <HistoryIcon />,
+      icon: <HistoryIcon className="size-4" />,
+      auth: true,
+   },
+   {
+      title: 'Watch Later',
+      url: '/playlists/watch-later',
+      icon: <ClockFading />,
       auth: true,
    },
    {

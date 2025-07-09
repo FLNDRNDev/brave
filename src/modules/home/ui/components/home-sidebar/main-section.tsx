@@ -48,7 +48,7 @@ const items = [
       external: true,
    },
    {  
-      title: 'latest',
+      title: 'Latest',
       url: '/feed/latest',
       icon: <Clock />,
    },
