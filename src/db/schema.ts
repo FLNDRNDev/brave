@@ -1,11 +1,10 @@
 import { pgTable, uuid, text, timestamp, uniqueIndex } from "drizzle-orm/pg-core";
 
-
+// ONLY FOR SIGN UP & IN WITH OAuth credentials
 export const users = pgTable("users", {
   id: uuid("id").primaryKey().defaultRandom(),
   clerkId: text("clerk_id").unique().notNull(),
-  firstName: text("first_name").notNull(),
-  lastName: text("last_name").notNull(),
+  name: text("name").notNull(),
   
   // TODO: Add banner field
 

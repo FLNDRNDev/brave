@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dev:all": "concurrently \"bun run dev:webhook\" \"bun run dev\"",
+    "dev:webhook": "ngrok http --domain=amazed-lynx-rare.ngrok-free.app 3000",
     "dev": "bunx --bun next dev",
     "build": "bunx --bun next build",
     "start": "bunx --bun next start",
-    "lint": "bunx --bun next lint"
+    "lint": "bunx --bun next lint",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push"
   },
   "dependencies": {
     "@clerk/nextjs": "6.10.3",
@@ -40,6 +44,7 @@
     "@radix-ui/react-tooltip": "^1.2.7",
     "class-variance-authority": "^0.7.1",
     "cmdk": "^1.1.1",
+    "concurrently": "9.1.2",
     "date-fns": "^4.1.0",
     "dotenv": "16.4.7",
     "drizzle-orm": "0.39.0",
@@ -56,6 +61,7 @@
     "react-resizable-panels": "^3.0.3",
     "recharts": "^3.0.2",
     "sonner": "^2.0.6",
+    "svix": "1.45.1",
     "tailwind-merge": "^3.3.1",
     "vaul": "^1.1.2",
     "zod": "^3.25.75"

@@ -22,10 +22,10 @@ export const AuthButton = () => {
 					<Button 
 						variant="customOutline"
 						size="icon"
-						className="md:w-fit md:h-9 md:px-4 [&svg]:size-4"
+						className="md:w-fit md:h-9 md:px-4 [&svg]:size-4 !text-[#1da1f2]"
 					>
 						<UserIcon className="size-4 text-primary" />
-						<span className="hidden md:block text-sm font-light tracking-tight">Sign in</span>	
+						<span className="hidden md:block text-[0.8125rem] font-light tracking-tight">Sign in</span>	
 					</Button>
 				</SignInButton>
 			</SignedOut>
