@@ -9,6 +9,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        custom:
+          "w-fit h-9 flex items-center justify-center px-4 gap-2 border border-gray-400/30 !dark:border-gray-800 bg-transparent hover:bg-cta/20 hover:border-cta/50 rounded-full cursor-pointer transition-colors duration-200 [&_svg]:size-4 cursor-pointer",
         customRounded: 
           "w-9 h-9 flex items-center justify-center border border-gray-400/30 !dark:border-gray-800 bg-transparent hover:bg-brand/20 hover:border-brand/50 rounded-full cursor-pointer transition-colors duration-200 [&_svg]:size-4",
         customOutline: 

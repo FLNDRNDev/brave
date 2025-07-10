@@ -2,6 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useAuth, useClerk } from '@clerk/nextjs';
+
 import { 
    HistoryIcon, 
    Heart, 
@@ -25,7 +27,7 @@ const items = [
    {
       title: 'Liked',
       url: '/playlists/liked',
-      icon: <Heart className="text-red-500" />,
+      icon: <Heart className="text-cta" />,
       auth: true,
    },
    {  
@@ -37,6 +39,9 @@ const items = [
 ];
 
 export const ExplorerSection = () => {
+   const clerk = useClerk();
+   const { isSignedIn } = useAuth();
+
    return (
       <>
          <SidebarGroup>
@@ -45,17 +50,29 @@ export const ExplorerSection = () => {
                <SidebarMenu>
                   {items.map((item) => (
                      <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton 
-                           asChild
-                           tooltip={item.title}
-                           isActive={false}        // TODO: Change to look at current pathname
-                           onClick={() => {}}      // TODO: Do something onClick handler
-                        >
-                           <Link href={item.url} className="flex items-center gap-4">
-                              {item.icon}
-                              <span className="text-sm font-light tracking-tight">{item.title}</span>
-                           </Link>
-                        </SidebarMenuButton>
+                        {!isSignedIn && item.auth ? (
+                           <SidebarMenuButton 
+                              tooltip={item.title}
+                              isActive={false}
+                              onClick={() => clerk.openSignIn()}
+                           >
+                              <div className="flex items-center gap-4">
+                                 {item.icon}
+                                 <span className="text-sm font-light tracking-tight">{item.title}</span>
+                              </div>
+                           </SidebarMenuButton>
+                        ) : (
+                           <SidebarMenuButton 
+                              asChild
+                              tooltip={item.title}
+                              isActive={false}
+                           >
+                              <Link href={item.url} className="flex items-center gap-4">
+                                 {item.icon}
+                                 <span className="text-sm font-light tracking-tight">{item.title}</span>
+                              </Link>
+                           </SidebarMenuButton>
+                        )}
                      </SidebarMenuItem>
                   ))}
                </SidebarMenu>
