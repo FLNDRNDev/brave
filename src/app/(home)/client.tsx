@@ -4,11 +4,14 @@
 
 import { trpc } from "@/trpc/client";
 
-export const PageClient = () => {
+interface PageClientProps {
+  text?: string;
+}
+
+export const PageClient = ({ text = "Doron" }: PageClientProps) => {
    const { data, error, isLoading } = trpc.hello.useQuery({ 
-      text: "Doron" 
+      text 
    });
-   console.log('Query result:', { data, error, isLoading });
 
    if (isLoading) {
       return <div>Loading...</div>;

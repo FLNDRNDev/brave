@@ -16,7 +16,9 @@ export async function POST(req: Request) {
 	const SIGNING_SECRET = process.env.CLERK_WEBHOOK_SIGNING_SECRET;
 
 	if (!SIGNING_SECRET) {
-		throw new Error('Error: Please add CLERK_WEBHOOK_SIGNING_SECRET from Clerk Dashboard to .env or .env.local')
+		return new Response('Error: Please add CLERK_WEBHOOK_SIGNING_SECRET from Clerk Dashboard to .env or .env.local', { 
+			status: 500 
+		});
 	}
 
 	// Create a new Svix instance with the signing secret
@@ -61,45 +63,76 @@ export async function POST(req: Request) {
 	// For this guide, log payload to console
 	const eventType = evt.type;
 	
+	// Helper function to format user name
+	const formatUserName = (data: any): string => {
+		const firstName = (data.first_name || '').trim();
+		const lastName = (data.last_name || '').trim();
+		const name = `${firstName} ${lastName}`.trim();
+		return name || 'Unknown User';
+	};
+	
 	// TODO: Add the properties for Sign Up & In with Email credentials
 	// Create user in database
 	if (eventType === 'user.created') {
 		const { data } = evt;
 
-		await db.insert(users).values({
-			clerkId: data.id,
-			name: `${data.first_name} ${data.last_name}`,
-			imageUrl: data.image_url,
-			createdAt: new Date(),
-			updatedAt: new Date(),
-		})
+		try {
+			const name = formatUserName(data);
+			
+			await db.insert(users).values({
+				clerkId: data.id,
+				name,
+				imageUrl: data.image_url || null,
+			});
+		} catch (error) {
+			console.error('Error creating user:', error);
+			return new Response('Error creating user', { 
+				status: 500 
+			});
+		}
 	} 
 
 	// Update user in database
 	if (eventType === 'user.updated') {
 		const { data } = evt;
 
-		await db
+		try {
+			const name = formatUserName(data);
+			
+			await db
 				.update(users)
-		      .set({
-					name: `${data.first_name} ${data.last_name}`,
-					imageUrl: data.image_url,
+				.set({
+					name,
+					imageUrl: data.image_url || null,
 					updatedAt: new Date(),
 				})
 				.where(eq(users.clerkId, data.id));
+		} catch (error) {
+			console.error('Error updating user:', error);
+			return new Response('Error updating user', { 
+				status: 500 
+			});
+		}
 	}
 
 	// Delete user from database
 	if (eventType === 'user.deleted') {
 		const { data } = evt;
 
-		if (!data.id) {
+		if (!data.id || typeof data.id !== 'string' || data.id.trim().length === 0) {
 			return new Response('Missing user ID', { 
 				status: 400 
 			});
 		}
 
-		await db.delete(users).where(eq(users.clerkId, data.id));
+		try {
+			await db.delete(users).where(eq(users.clerkId, data.id));
+		} catch (error) {
+			console.error('Error deleting user:', error);
+			return new Response('Error deleting user', { 
+				status: 500 
+			});
+		}
 	}
 
 	return new Response('Webhook received', { status: 200 });

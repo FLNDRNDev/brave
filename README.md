@@ -283,7 +283,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Database Schema
 - Users table with Clerk integration
-- Includes fields: id, clerkId, firstName, lastName, imageUrl, createdAt, updatedAt
+- Includes fields: id, clerkId, name, imageUrl, createdAt, updatedAt
 - Unique index on clerkId for efficient lookups
 
 ### Branch Info

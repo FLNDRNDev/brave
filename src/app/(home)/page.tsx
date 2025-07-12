@@ -4,8 +4,6 @@
  * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts
  */
 
-'use server';
-
 import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
 

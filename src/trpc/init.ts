@@ -64,12 +64,10 @@ export const protectedProcedure = t.procedure.use(async function isAuthed(opts) 
    }
 
    // Check if the user has exceeded the rate limit
-   const { success, limit, reset, remaining } = await ratelimit.limit(user.id);
-   console.log('Rate limit result:', { success, limit, reset, remaining });
+   const { success } = await ratelimit.limit(user.id);
 
    // If the user has exceeded the rate limit, throw an error
    if (!success) {
-      console.log('Rate limit exceeded for user:', user.id);
       throw new TRPCError({ code: 'TOO_MANY_REQUESTS' });
    }
 

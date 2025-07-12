@@ -79,6 +79,7 @@ const config: Config = {
           light: "oklch(var(--danger-light))", // #ffdad6 (light) / #ffdad6 (dark)
           dark: "oklch(var(--danger-dark))", // #723633 (light) / #723633 (dark)
         },
+
         // Gray scale
         gray: {
           lightest: "oklch(var(--gray-lightest))", // #f9fafa

@@ -10,11 +10,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         custom:
-          "w-fit h-9 flex items-center justify-center px-4 gap-2 border border-gray-400/30 !dark:border-gray-800 bg-transparent hover:bg-cta/20 hover:border-cta/50 rounded-full cursor-pointer transition-colors duration-200 [&_svg]:size-4 cursor-pointer",
+          "w-fit h-9 flex items-center justify-center px-4 gap-2 border border-gray-400/30 !dark:border-gray-800 bg-transparent hover:bg-cta/20 hover:border-cta/50 rounded-full transition-colors duration-200 [&_svg]:size-4 cursor-pointer",
         customRounded: 
-          "w-9 h-9 flex items-center justify-center border border-gray-400/30 !dark:border-gray-800 bg-transparent hover:bg-[#1da1f2]/20 hover:border-[#1da1f2]/50 rounded-full transition-colors duration-200 [&_svg]:size-4 cursor-pointer",
+          "w-9 h-9 flex items-center justify-center border border-cta bg-transparent hover:bg-cta/30 text-cta hover:text-foreground rounded-full transition-colors duration-200 [&_svg]:size-4 [&_svg]:text-cta cursor-pointer",
         customOutline: 
-          "h-9 border border-[#1da1f2] bg-transparent hover:bg-[#1da1f2]/30 text-[#1da1f2] hover:text-foreground rounded-full transition-colors duration-200 [&_svg]:size-4 ![&_svg]:text-[#1da1f2] cursor-pointer",
+          "h-9 border border-[#1da1f2] bg-transparent hover:bg-[#1da1f2]/30 text-[#1da1f2] hover:text-foreground rounded-full transition-colors duration-200 [&_svg]:size-4 [&_svg]:text-[#1da1f2] cursor-pointer",
         default:
           "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
         destructive:

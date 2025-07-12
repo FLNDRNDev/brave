@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev:all": "concurrently \"bun run dev:webhook\" \"bun run dev\"",
-    "dev:webhook": "ngrok http --domain=amazed-lynx-rare.ngrok-free.app 3000",
+    "dev:webhook": "bunx bash -c \"ngrok http ${NGROK_DOMAIN:+--domain=$NGROK_DOMAIN} 3000\"",
     "dev": "bunx --bun next dev",
     "build": "bunx --bun next build",
     "start": "bunx --bun next start",
@@ -43,10 +43,10 @@
     "@radix-ui/react-toggle-group": "^1.1.10",
     "@radix-ui/react-tooltip": "^1.2.7",
     "@tanstack/react-query": "5.65.1",
-    "@trpc/client": "11.0.0-rc.730",
-    "@trpc/next": "11.0.0-rc.730",
-    "@trpc/react-query": "11.0.0-rc.730",
-    "@trpc/server": "11.0.0-rc.730",
+    "@trpc/client": "11.0.1",
+    "@trpc/next": "11.0.1",
+    "@trpc/react-query": "11.0.1",
+    "@trpc/server": "11.0.1",
     "@upstash/ratelimit": "2.0.5",
     "@upstash/redis": "1.34.3",
     "class-variance-authority": "^0.7.1",
@@ -82,12 +82,13 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "drizzle-kit": "^0.31.4",
+    "drizzle-kit": "^0.39.0",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
     "postcss": "^8",
     "tailwindcss": "^4.1.10",
     "tsx": "^4.20.3",
-    "typescript": "^5.5.0"
+    "typescript": "^5.5.0",
+    "ngrok": "^5.0.0"
   }
 }
