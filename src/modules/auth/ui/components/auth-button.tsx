@@ -24,7 +24,7 @@ export const AuthButton = () => {
 						size="icon"
 						className="md:w-fit md:h-9 md:px-4 [&svg]:size-4 !text-[#1da1f2]"
 					>
-						<UserIcon className="size-4 text-primary" />
+						<UserIcon className="size-4 text-[#1da1f2] !dark:text-[#1da1f2]" />
 						<span className="hidden md:block text-[0.8125rem] font-light tracking-tight">Sign in</span>	
 					</Button>
 				</SignInButton>

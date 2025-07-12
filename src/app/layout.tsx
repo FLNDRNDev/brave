@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from '@clerk/nextjs'
+import { ThemeProvider } from "next-themes";
 import { Inter, Poppins } from "next/font/google";
 
 import "./globals.css";
 
-import { ThemeProvider } from "next-themes";
+import { TRPCReactProvider } from "@/trpc/client";
 
 // font inter
 const inter = Inter({
@@ -37,17 +38,18 @@ export default function RootLayout({
 	return (
 		<ClerkProvider afterSignOutUrl="/">
 			<html lang="en" suppressHydrationWarning>
-			<body className={`${inter.className} ${poppins.variable} antialiased`}>
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="system"
-					enableSystem
-					disableTransitionOnChange
-				>
-				{children}
-
-				</ThemeProvider>
-			</body>
+				<body className={`${inter.className} ${poppins.variable} antialiased`}>
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange
+					>
+						<TRPCReactProvider>
+							{children}
+						</TRPCReactProvider>
+					</ThemeProvider>
+				</body>
 			</html>
 		</ClerkProvider>
 	);

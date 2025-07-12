@@ -1,3 +1,10 @@
+// src/app/api/users/webhook/route.ts
+
+/**
+ * @see https://clerk.com/docs/references/webhooks/user-webhooks
+ */
+
+
 import { Webhook } from 'svix';
 import { eq } from 'drizzle-orm';
 import { headers } from 'next/headers';

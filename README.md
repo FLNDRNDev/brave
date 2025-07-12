@@ -290,3 +290,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Branch name: `03-neon-database-setup-with-drizzle-orm`
 - Commit message: `03: Neon database setup with Drizzle ORM`
 - Merged into `main` after testing and review.
+
+## 🤖 Coderabbit Workflow
+
+- All changes must follow the AI Agent Rules in `.cursor/rules/ai-agent-rules-set.mdx`.
+- Never delete files unless explicitly requested by the user.
+- Always create a new branch for each feature or fix, using the exact commit text as the branch name (lowercase, hyphens for spaces).
+- Make a main commit on `main` and a branch commit on the feature branch for each change.
+- Push both `main` and the feature branch to the remote repository.
+- Update the changelog and wait for user approval before merging to `main`.
