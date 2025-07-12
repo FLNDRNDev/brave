@@ -21,7 +21,7 @@ export const PageClient = () => {
    return (
       <>
          <div>
-            says: {data?.greeting}
+            {data?.greeting}
          </div>
       </>
    );

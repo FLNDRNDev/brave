@@ -10,14 +10,14 @@ import { baseProcedure, createTRPCRouter, protectedProcedure } from "@/trpc/init
 
 
 export const appRouter = createTRPCRouter({
-   hello: baseProcedure
+   hello: protectedProcedure
       .input(
          z.object({ 
             text: z.string(),
          })
       )
       .query((opts) => {
-         console.log({ fromContext: opts.ctx.ClerkUserId });
+         console.log({ dbUser: opts.ctx.user });
 
          return { greeting: `hello, ${opts.input.text}!` };
       }),

@@ -20,8 +20,7 @@ export default async function Home() {
          <HydrateClient>
             {/* TODO: add different background for different themes styles */}
             <div className="min-h-screen bg-dark">
-               I will load videos here in the future and Client component
-               
+               <p>brave says to: </p>
                <ErrorBoundary fallback={<p>Error...</p>}>
                   <PageClient />
                </ErrorBoundary>

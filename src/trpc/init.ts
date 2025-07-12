@@ -5,12 +5,16 @@
  */ 
 
 
+import { db } from "@/db";
+import { users } from "@/db/schema";
+import { eq } from "drizzle-orm";
 import { cache } from "react";
 import superjson from "superjson";
 
 import { auth } from "@clerk/nextjs/server";
-
 import { initTRPC, TRPCError } from "@trpc/server";
+
+import { ratelimit } from "@/lib/ratelimit";
 
 
 // Create a cache function to store the user id
@@ -48,9 +52,32 @@ export const protectedProcedure = t.procedure.use(async function isAuthed(opts) 
       throw new TRPCError({ code: 'UNAUTHORIZED' });
    }
 
+   // If the user is not found, throw an error
+   const [user] = await db
+      .select()
+      .from(users)
+      .where(eq(users.clerkId, ctx.ClerkUserId))
+      .limit(1);
+
+   if (!user) {
+      throw new TRPCError({ code: 'UNAUTHORIZED' });
+   }
+
+   // Check if the user has exceeded the rate limit
+   const { success, limit, reset, remaining } = await ratelimit.limit(user.id);
+   console.log('Rate limit result:', { success, limit, reset, remaining });
+
+   // If the user has exceeded the rate limit, throw an error
+   if (!success) {
+      console.log('Rate limit exceeded for user:', user.id);
+      throw new TRPCError({ code: 'TOO_MANY_REQUESTS' });
+   }
+
+   // If the user has not exceeded the rate limit, return the user
    return opts.next({ 
       ctx: { 
-         ...ctx, ClerkUserId: ctx.ClerkUserId 
-      }
+         ...ctx,
+         user: user,
+      },
    });
 });
