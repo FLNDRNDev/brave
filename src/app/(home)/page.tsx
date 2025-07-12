@@ -1,14 +1,32 @@
+// src/app/(home)/page.tsx
+
+/**
+ * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts
+ */
+
+'use server';
+
 import React from "react";
-import Image from "next/image";
+import { ErrorBoundary } from "react-error-boundary";
+
+import { HydrateClient } from "@/trpc/server";
+
+import PageClient from "@/app/(home)/client";
 
 
-export default function Home() {
+export default async function Home() {
    return (
       <>
-         {/* TODO: add different background for different themes styles */}
-         <div className="min-h-screen bg-dark">
-            I will load videos here in the future
-         </div>
+         <HydrateClient>
+            {/* TODO: add different background for different themes styles */}
+            <div className="min-h-screen bg-dark">
+               I will load videos here in the future and Client component
+               
+               <ErrorBoundary fallback={<p>Error...</p>}>
+                  <PageClient />
+               </ErrorBoundary>
+            </div>
+         </HydrateClient>
       </>
    );
 }

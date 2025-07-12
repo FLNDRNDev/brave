@@ -1,4 +1,4 @@
-########## --------------- brave AI Agent Project Rules --------------- ##########
+########## ------------------------- brave AI Agent Project Rules ------------------------- ##########
 
 ## Core Principles
 
@@ -60,6 +60,29 @@
 - Avoid exposing sensitive information in error messages
 - Implement proper authentication and authorization checks
 - Handle security-related errors appropriately
+
+### 9. Documentation and Version Compatibility
+- **MANDATORY**: When encountering any file with `@see` comments containing URLs, immediately cross-reference with `package.json` to verify version compatibility
+- **REQUIRED**: Check the installed package versions against the documentation URLs referenced in `@see` comments
+- **CRITICAL**: If version mismatches are found, provide specific fixes that align with the installed package versions
+- **ESSENTIAL**: Always verify that code implementations match the exact version of packages installed in the project
+- **MANDATORY**: When documentation URLs reference different package versions than what's installed, adapt the code to work with the actual installed versions
+- **REQUIRED**: Provide clear explanations of version differences and their impact on implementation
+- **ESSENTIAL**: Ensure all code examples and patterns are compatible with the specific package versions in `package.json`
+- **UNIVERSAL**: This rule applies to ALL `@see` URL references throughout the entire codebase, not just tRPC
+- **COMPREHENSIVE**: Every `@see` comment with a URL must trigger a `package.json` version compatibility check
+- **SYSTEMATIC**: Apply this version verification process to any library, framework, or tool referenced in `@see` URLs
+
+### 10. TODO Task Management and Tracking
+- **MANDATORY**: After any code deployment to GitHub repository, automatically scan the entire project for `// TODO:` comments
+- **REQUIRED**: Cross-reference found `// TODO:` comments with the `TODO.mdx` file to identify new tasks or completed tasks
+- **CRITICAL**: Update `TODO.mdx` file by adding new `// TODO:` comments that are not in the list
+- **ESSENTIAL**: Remove completed `// TODO:` tasks from `TODO.mdx` when the corresponding code has been implemented
+- **MANDATORY**: Maintain accurate categorization of TODO items by feature area (Database, UI, API, etc.)
+- **REQUIRED**: Provide clear file paths and line numbers for each TODO item for easy tracking
+- **ESSENTIAL**: Ensure TODO list stays synchronized with actual codebase state after each deployment
+- **MANDATORY**: Scan for both `// TODO:` and `{/* TODO: */}` comment formats
+- **REQUIRED**: Update TODO priorities and estimates when new tasks are added or existing ones are completed
 
 ## Response Format
 

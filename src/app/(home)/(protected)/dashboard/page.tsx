@@ -1,3 +1,6 @@
+// src/app/(home)/(protected)/dashboard/page.tsx
+
+
 'use client';
 
 import React from "react";
