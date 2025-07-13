@@ -4,26 +4,33 @@
  * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts
  */
 
-import React from "react";
-import { ErrorBoundary } from "react-error-boundary";
+import { HydrateClient, trpc } from "@/trpc/server";
 
-import { HydrateClient } from "@/trpc/server";
-
-import PageClient from "@/app/(home)/client";
+import HomeView from "@/modules/home/ui/views/home-view";
 
 
-export default async function Home() {
+export const dynamic = "force-dynamic";
+
+interface PageProps {
+   searchParams: Promise<{
+      categoryId?: string;
+   }>;
+};
+
+const Page = async ({ searchParams }: PageProps) => {
+   const { categoryId } = await searchParams;
+
+   void trpc.categories.getMany.prefetch();
+
    return (
-      <>
+      <> 
+         {/* TODO: add different background for different themes styles */}
+
          <HydrateClient>
-            {/* TODO: add different background for different themes styles */}
-            <div className="min-h-screen bg-dark">
-               <p>brave says to: </p>
-               <ErrorBoundary fallback={<p>Error...</p>}>
-                  <PageClient />
-               </ErrorBoundary>
-            </div>
+           <HomeView categoryId={categoryId} />
          </HydrateClient>
       </>
    );
 }
+
+export default Page;

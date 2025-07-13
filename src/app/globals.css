@@ -19,9 +19,9 @@
     
 
     /* Brand colors */
-    --brand-light: 0.78 0.12 210; /* #4db5f5 */
-    --brand: 0.65 0.18 210; /* #1da1f2 */
-    --brand-dark: 0.52 0.15 210; /* #0d8bd9 */
+    --brave-light: 0.78 0.12 210; /* #4db5f5 */
+    --brave: 0.65 0.18 210; /* #1da1f2 */
+    --brave-dark: 0.52 0.15 210; /* #0d8bd9 */
     
     /* CTA colors */
     --cta-light: 0.92 0.08 350; /* #ffd2df */
@@ -92,9 +92,9 @@
     --dark: 0.15 0.01 240; /* #212222 */
     
     /* Brand colors (adjusted for dark theme) */
-    --brand-light: 0.82 0.14 210; /* #4db5f5 */
-    --brand: 0.7 0.2 210; /* #1da1f2 */
-    --brand-dark: 0.58 0.17 210; /* #0d8bd9 */
+    --brave-light: 0.82 0.14 210; /* #4db5f5 */
+    --brave: 0.7 0.2 210; /* #1da1f2 */
+    --brave-dark: 0.58 0.17 210; /* #0d8bd9 */
     
     /* CTA colors (adjusted for dark theme) */
     --cta-light: 0.85 0.1 350; /* #ffd2df */

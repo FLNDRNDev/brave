@@ -10,13 +10,16 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90",
+          "border-[#1da1f2] text-primary-foreground bg-[#1da1f2]/80 hover:bg-[#1da1f2]/20 transition-colors duration-300",
         secondary:
-          "border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90",
+          "border-[#ed3384] text-primary-foreground  bg-[#ed3384]/80 hover:bg-[#ed3384]/20 transition-colors duration-300",
         destructive:
           "border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
-          "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+          "border-gray-500 text-gray-500 bg-transparent hover:bg-[#1da1f2]/10 hover:text-[#1da1f2] hover:border-[#1da1f2] transition-colors duration-300",
+        // Only for the LIVE badge category
+        live:
+          "border-red-500 bg-red-500 hover:bg-red-500/10 transition-colors duration-300 text-white font-bold [&>svg]:size-4 mr-1",
       },
     },
     defaultVariants: {
