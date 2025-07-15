@@ -13,9 +13,12 @@ import { db } from '@/db';
 import { users } from '@/db/schema';
 
 export async function POST(req: Request) {
+	console.log('Webhook received');
+	
 	const SIGNING_SECRET = process.env.CLERK_WEBHOOK_SIGNING_SECRET;
 
 	if (!SIGNING_SECRET) {
+		console.error('Missing CLERK_WEBHOOK_SIGNING_SECRET');
 		return new Response('Error: Please add CLERK_WEBHOOK_SIGNING_SECRET from Clerk Dashboard to .env or .env.local', { 
 			status: 500 
 		});
@@ -62,6 +65,8 @@ export async function POST(req: Request) {
 	// Do something with the payload
 	// For this guide, log payload to console
 	const eventType = evt.type;
+	console.log('Webhook event type:', eventType);
+	console.log('Webhook event data:', JSON.stringify(evt.data, null, 2));
 	
 	// Helper function to format user name
 	const formatUserName = (data: any): string => {
@@ -74,16 +79,25 @@ export async function POST(req: Request) {
 	// TODO: Add the properties for Sign Up & In with Email credentials
 	// Create user in database
 	if (eventType === 'user.created') {
+		console.log('Processing user.created event');
 		const { data } = evt;
 
 		try {
 			const name = formatUserName(data);
-			
-			await db.insert(users).values({
+			console.log('Formatted name:', name);
+			console.log('User data to insert:', {
 				clerkId: data.id,
 				name,
 				imageUrl: data.image_url || null,
 			});
+			
+			const result = await db.insert(users).values({
+				clerkId: data.id,
+				name,
+				imageUrl: data.image_url || null,
+			});
+			
+			console.log('User created successfully:', result);
 		} catch (error) {
 			console.error('Error creating user:', error);
 			return new Response('Error creating user', { 
@@ -135,5 +149,6 @@ export async function POST(req: Request) {
 		}
 	}
 
+	console.log('Webhook processed successfully');
 	return new Response('Webhook received', { status: 200 });
 }

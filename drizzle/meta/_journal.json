@@ -15,6 +15,13 @@
       "when": 1752349637833,
       "tag": "0001_lonely_archangel",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1752568853012,
+      "tag": "0002_cheerful_darkstar",
+      "breakpoints": true
     }
   ]
 }

@@ -16,7 +16,7 @@ export const users = pgTable("users", {
 	// TODO: Add banner field
 
 
-	imageUrl: text("image_url").notNull(),
+	imageUrl: text("image_url"),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at").defaultNow().notNull().$onUpdate(() => new Date()),
 }, (t) => [uniqueIndex("clerk_id_idx").on(t.clerkId)]);

@@ -27,7 +27,7 @@ export const HomeNavbar = () => {
 	return (
 		<>
 			<nav
-				className={`z-50 fixed top-0 left-0 right-0 flex items-center h-16 pl-2 pr-4 border-b border-gray-400/30 !dark:border-gray-800 transition-all duration-300
+				className={`z-50 fixed top-0 left-0 right-0 flex items-center h-18 pl-2 pr-4 border-b border-gray-400/30 !dark:border-gray-800 transition-all duration-300
 					${scrolled ? 'bg-background/80 backdrop-blur-md' : 'bg-background'}
 				`}
 			>

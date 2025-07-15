@@ -10,11 +10,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         custom:
-          "w-fit h-9 flex items-center justify-center px-4 gap-2 border border-gray-400/30 !dark:border-gray-800 bg-transparent hover:bg-cta/20 hover:border-cta/50 rounded-full transition-colors duration-200 [&_svg]:size-4 cursor-pointer",
+          "w-fit h-8 flex items-center justify-center px-4 gap-2 border border-gray-400/30 !dark:border-gray-800 bg-transparent hover:bg-cta/20 hover:border-cta/50 rounded-full transition-colors duration-200 [&_svg]:size-4 cursor-pointer",
         customRounded: 
-          "w-9 h-9 flex items-center justify-center border border-cta bg-transparent hover:bg-cta/30 text-cta hover:text-foreground rounded-full transition-colors duration-200 [&_svg]:size-4 [&_svg]:text-cta cursor-pointer",
+          "w-8 h-8 flex items-center justify-center border border-cta bg-transparent hover:bg-cta/30 text-cta hover:text-foreground rounded-full transition-colors duration-200 [&_svg]:size-4 [&_svg]:text-cta cursor-pointer",
         customOutline: 
-          "h-9 border border-[#1da1f2] bg-transparent hover:bg-[#1da1f2]/30 text-[#1da1f2] hover:text-foreground rounded-full transition-colors duration-200 [&_svg]:size-4 [&_svg]:text-[#1da1f2] cursor-pointer",
+          "h-8 border border-[#1da1f2] bg-transparent hover:bg-[#1da1f2]/30 text-[#1da1f2] hover:text-foreground rounded-full transition-colors duration-200 [&_svg]:size-4 [&_svg]:text-[#1da1f2] cursor-pointer",
         default:
           "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
         destructive:
@@ -28,10 +28,10 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
+        default: "h-8 px-4 py-2 has-[>svg]:px-3",
+        sm: "h-6 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-        icon: "size-9",
+        icon: "size-8",
       },
     },
     defaultVariants: {
