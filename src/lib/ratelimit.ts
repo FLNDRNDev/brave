@@ -7,9 +7,9 @@ import { redis } from "@/lib/redis";
 const isProduction = process.env.NODE_ENV === 'production';
 
 // Production: 10 requests per 10 seconds (more permissive for real users)
-// Testing/Development: 3 requests per 5 seconds (more aggressive for testing)
-const requests = isProduction ? 10 : 3;
-const window = isProduction ? "10s" : "5s";
+// Testing/Development: 20 requests per 10 seconds (more permissive for development)
+const requests = isProduction ? 10 : 20;
+const window = isProduction ? "10s" : "10s";
 
 export const ratelimit = new Ratelimit({
    redis,

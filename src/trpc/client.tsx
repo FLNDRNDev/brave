@@ -68,6 +68,12 @@ export function TRPCReactProvider(
             const headers = new Headers();
             headers.set('x-trpc-source', 'nextjs-react');
             
+            // Add authentication headers for client-side requests
+            if (typeof window !== 'undefined') {
+              // This will be handled by Clerk's middleware automatically
+              // but we can add additional headers if needed
+            }
+            
             return headers;
           },
         }),

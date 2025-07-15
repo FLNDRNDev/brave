@@ -14,11 +14,9 @@ import { users } from '@/db/schema';
 
 export async function POST(req: Request) {
 	console.log('Webhook received');
-	
 	const SIGNING_SECRET = process.env.CLERK_WEBHOOK_SIGNING_SECRET;
 
 	if (!SIGNING_SECRET) {
-		console.error('Missing CLERK_WEBHOOK_SIGNING_SECRET');
 		return new Response('Error: Please add CLERK_WEBHOOK_SIGNING_SECRET from Clerk Dashboard to .env or .env.local', { 
 			status: 500 
 		});
@@ -66,89 +64,48 @@ export async function POST(req: Request) {
 	// For this guide, log payload to console
 	const eventType = evt.type;
 	console.log('Webhook event type:', eventType);
-	console.log('Webhook event data:', JSON.stringify(evt.data, null, 2));
-	
-	// Helper function to format user name
-	const formatUserName = (data: any): string => {
-		const firstName = (data.first_name || '').trim();
-		const lastName = (data.last_name || '').trim();
-		const name = `${firstName} ${lastName}`.trim();
-		return name || 'Unknown User';
-	};
-	
+
 	// TODO: Add the properties for Sign Up & In with Email credentials
 	// Create user in database
 	if (eventType === 'user.created') {
 		console.log('Processing user.created event');
 		const { data } = evt;
 
-		try {
-			const name = formatUserName(data);
-			console.log('Formatted name:', name);
-			console.log('User data to insert:', {
-				clerkId: data.id,
-				name,
-				imageUrl: data.image_url || null,
-			});
-			
-			const result = await db.insert(users).values({
-				clerkId: data.id,
-				name,
-				imageUrl: data.image_url || null,
-			});
-			
-			console.log('User created successfully:', result);
-		} catch (error) {
-			console.error('Error creating user:', error);
-			return new Response('Error creating user', { 
-				status: 500 
-			});
-		}
+		await db.insert(users).values({
+			clerkId: data.id,
+			name: `${data.first_name} ${data.last_name}`,
+			imageUrl: data.image_url,
+			createdAt: new Date(),
+			updatedAt: new Date(),
+		})
 	} 
 
 	// Update user in database
 	if (eventType === 'user.updated') {
 		const { data } = evt;
 
-		try {
-			const name = formatUserName(data);
-			
-			await db
-				.update(users)
-				.set({
-					name,
-					imageUrl: data.image_url || null,
-					updatedAt: new Date(),
-				})
-				.where(eq(users.clerkId, data.id));
-		} catch (error) {
-			console.error('Error updating user:', error);
-			return new Response('Error updating user', { 
-				status: 500 
-			});
-		}
+		await db
+			.update(users)
+			.set({
+				name: `${data.first_name} ${data.last_name}`,
+				imageUrl: data.image_url,
+				updatedAt: new Date(),
+			})
+			.where(eq(users.clerkId, data.id));
 	}
 
 	// Delete user from database
 	if (eventType === 'user.deleted') {
 		const { data } = evt;
 
-		if (!data.id || typeof data.id !== 'string' || data.id.trim().length === 0) {
+		if (!data.id) {
 			return new Response('Missing user ID', { 
 				status: 400 
 			});
 		}
 
-		try {
-			await db.delete(users).where(eq(users.clerkId, data.id));
-		} catch (error) {
-			console.error('Error deleting user:', error);
-			return new Response('Error deleting user', { 
-				status: 500 
-			});
-		}
+		await db.delete(users).where(eq(users.clerkId, data.id));
 	}
 
-	console.log('Webhook processed successfully');
 	return new Response('Webhook received', { status: 200 });
 }

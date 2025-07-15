@@ -6,6 +6,7 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 
 import { TRPCReactProvider } from "@/trpc/client";
+import { Toaster } from "@/components/ui/sonner";
 
 // font inter
 const inter = Inter({
@@ -24,7 +25,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
 	title: "brave",
-	description: "Open video platform championing free speech and unrestricted content sharing. A YouTube alternative prioritizing creator freedom with community-driven moderation. Freedom to speak. Power to change.",
+	description: "Brave is a video platform championing free speech and unrestricted content sharing. A YouTube alternative prioritizing creator freedom with community-driven moderation. Freedom to speak. Power to change.",
 	icons: {
 		icon: "/favicon.svg",
 	}
@@ -47,6 +48,8 @@ export default function RootLayout({
 					>
 						<TRPCReactProvider>
 							{children}
+
+							<Toaster richColors position="top-center" />
 						</TRPCReactProvider>
 					</ThemeProvider>
 				</body>

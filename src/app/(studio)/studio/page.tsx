@@ -11,17 +11,20 @@
 * in the tutorial this is called studio page === needs to be removed later this line
 */
 
+import { auth } from '@clerk/nextjs/server';
+import { HydrateClient } from '@/trpc/server';
+import { StudioView } from '@/modules/studio/ui/view/studio-view';
 
-'use client';
 
-import React from 'react';
+const Page = async () => {
+   const { userId } = await auth();
 
-
-const Page = () => {
    return (
       // TODO: add later the studio AI functionality here
       <>
-         <div className="">Studio & Studio AI Page</div>
+         <HydrateClient>
+            <StudioView />
+         </HydrateClient>
       </>
    );
 }

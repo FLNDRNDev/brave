@@ -84,6 +84,13 @@
 - **MANDATORY**: Scan for both `// TODO:` and `{/* TODO: */}` comment formats
 - **REQUIRED**: Update TODO priorities and estimates when new tasks are added or existing ones are completed
 
+### 11. Development Server Commands
+- **MANDATORY**: Always use `bun run dev:all` to start the development server for this project
+- **REQUIRED**: Never use `bun run dev` alone as it doesn't start the webhook tunnel
+- **CRITICAL**: The `dev:all` command starts both the Next.js development server and the ngrok webhook tunnel
+- **ESSENTIAL**: Remember that this project requires both the web server and webhook tunnel to function properly
+- **MANDATORY**: When testing authentication or webhook functionality, always ensure both services are running
+
 ## Response Format
 
 When responding to issues or requests:
