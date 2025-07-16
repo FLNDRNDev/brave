@@ -27,10 +27,9 @@ export const StudioUploadModel = () => {
 				onClick={() => create.mutate()}
 				disabled={create.isPending}
 				variant="custom"
-				className="w-8 h-8 md:w-fit md:mx-5 md:h-8 md:px-4 [&svg]:size-4 cursor-pointer"
+				className="w-8 h-8 md:w-fit md:mx-5 md:h-8 md:px-4 [&svg]:size-4 border border-gray-200 dark:border-gray-800 hover:border-[#1da1f2] dark:hover:border-[#1da1f2] bg-[#1da1f2]/10 dark:hover:bg-[#1da1f2]/20 cursor-pointer"
 			>
-				{/* TODO: Add a loading state and check why the loader keeps spinning are the video is being created */}
-				{create.isPending ? <Loader className="size-5 animate-spin" /> : <Plus className="size-5" />}
+				{create.isPending ? <Loader className="size-5 animate-spin" /> : <Plus className="!size-6" />}
 				<span className="hidden md:block text-[0.8125rem] font-light tracking-tight">Create</span>
 			</Button>
 		</>

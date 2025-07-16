@@ -13,6 +13,10 @@ const inter = Inter({
 	variable: "--font-inter",
 	subsets: ["latin"],
 	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+	// ADDED: preload and display properties to prevent font flash
+	// REASON: Prevents ugly fallback fonts from showing during page load
+	preload: true,
+	display: 'swap',
 });
 
 // font poppins
@@ -20,6 +24,10 @@ const poppins = Poppins({
 	variable: "--font-poppins",
 	subsets: ["latin"],
 	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+	// ADDED: preload and display properties to prevent font flash
+	// REASON: Prevents ugly fallback fonts from showing during page load
+	preload: true,
+	display: 'swap',
 });
 
 
@@ -28,7 +36,7 @@ export const metadata: Metadata = {
 	description: "Brave is a video platform championing free speech and unrestricted content sharing. A YouTube alternative prioritizing creator freedom with community-driven moderation. Freedom to speak. Power to change.",
 	icons: {
 		icon: "/favicon.svg",
-	}
+	},
 };
 
 export default function RootLayout({

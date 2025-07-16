@@ -21,7 +21,7 @@ export const NotificationButton = () => {
             className="size-8 rounded-full bg-background hover:bg-red-500/20 transition-all duration-300 cursor-pointer"
          >
             <Link href="#">
-               <Bell className="!size-4 !text-red-500" />
+               <Bell className="!size-4" />
             </Link>
          </Button>
       </>

@@ -1,0 +1,119 @@
+########## ------------------------- Code Change Documentation Rules ------------------------- ##########
+
+## Core Principles for Code Change Documentation
+
+### 1. Mandatory Commenting for All Code Changes
+- **REQUIRED**: When making ANY changes to existing code, comment out the original code with `// ORIGINAL:` prefix
+- **MANDATORY**: Add `// FIXED:` or `// ADDED:` comment explaining what was changed
+- **ESSENTIAL**: Include `// REASON:` comment explaining WHY the change was made
+- **CRITICAL**: Preserve the original code as comments for reference and rollback capability
+
+### 2. Comment Format Standards
+```
+// ORIGINAL: [original code that was changed]
+// FIXED: [what was changed and how]
+// REASON: [why the change was necessary - include error messages, technical reasons, etc.]
+```
+
+### 3. Types of Changes to Document
+- **Bug Fixes**: Document the original problematic code and the fix
+- **Error Handling**: Show original code that lacked error handling
+- **Type Safety**: Document type-related fixes and improvements
+- **API Changes**: Show deprecated or incorrect API usage
+- **Performance Improvements**: Document inefficient code that was optimized
+- **Security Fixes**: Document vulnerable code that was secured
+
+### 4. Commenting Guidelines
+- **PRESERVE**: Always keep the original code as a comment, never delete it
+- **EXPLAIN**: Provide clear technical reasoning for each change
+- **CONTEXT**: Include error messages, warnings, or issues that prompted the change
+- **REFERENCE**: Mention any related files, dependencies, or external factors
+- **IMPACT**: Explain what the change fixes or improves
+
+### 5. File-Level Documentation
+- **HEADER**: Add file-level comments when making significant changes
+- **CHANGELOG**: Document major changes at the top of modified files
+- **DEPENDENCIES**: Note any new dependencies or version requirements
+- **BREAKING CHANGES**: Clearly mark any breaking changes
+
+### 6. Code Review Integration
+- **VISIBILITY**: Make all changes visible through comments for easy review
+- **TRACEABILITY**: Enable easy tracking of what was changed and why
+- **ROLLBACK**: Provide clear path to revert changes if needed
+- **LEARNING**: Help team members understand the reasoning behind changes
+
+### 7. Error Message Documentation
+- **INCLUDE**: Always include the exact error message that prompted the change
+- **CONTEXT**: Provide the full error context (file, line, stack trace if relevant)
+- **SOLUTION**: Explain how the fix addresses the specific error
+- **PREVENTION**: Note how similar errors can be prevented in the future
+
+### 8. Technical Debt Tracking
+- **MARK**: Use `// TODO:` comments for future improvements
+- **PRIORITIZE**: Mark critical fixes vs. nice-to-have improvements
+- **ESTIMATE**: Provide time estimates for future improvements
+- **OWNERSHIP**: Assign responsibility for future changes
+
+### 9. Version Compatibility
+- **DOCUMENT**: Note any version-specific fixes or workarounds
+- **DEPENDENCIES**: Track package version requirements
+- **MIGRATION**: Document upgrade paths and breaking changes
+- **COMPATIBILITY**: Note browser, framework, or library compatibility
+
+### 10. Code Quality Standards
+- **MAINTAIN**: Preserve existing code style and formatting
+- **CONSISTENT**: Use consistent commenting patterns across the project
+- **CLEAR**: Write comments that are easy to understand
+- **CONCISE**: Keep comments focused and relevant
+
+## Implementation Examples
+
+### Bug Fix Example:
+```typescript
+// ORIGINAL: const ref = targetRef<HTMLDivElement>(null);
+// FIXED: Changed 'targetRef' to 'useRef' and variable name from 'ref' to 'targetRef'
+// REASON: TypeScript error - 'targetRef' is not a function, should be 'useRef'
+const targetRef = useRef<HTMLDivElement>(null);
+```
+
+### Error Handling Example:
+```typescript
+// ORIGINAL: const observer = new IntersectionObserver(callback, options);
+// ADDED: Validation for rootMargin format to prevent constructor errors
+// REASON: Error "rootMargin must be specified in pixels or percent" when invalid format passed
+const validatedOptions = { ...options };
+// ... validation logic
+const observer = new IntersectionObserver(callback, validatedOptions);
+```
+
+### API Change Example:
+```typescript
+// ORIGINAL: const { data, query, error } = useInfiniteQuery(...)
+// FIXED: Removed non-existent 'query' property and destructured methods directly
+// REASON: useInfiniteQuery doesn't return a 'query' object - methods are available directly
+const { data, error, hasNextPage, isFetchingNextPage, fetchNextPage } = useInfiniteQuery(...)
+```
+
+## Required Actions for All Code Changes
+
+1. **BEFORE**: Comment out original code with `// ORIGINAL:`
+2. **DURING**: Add `// FIXED:` or `// ADDED:` comment
+3. **AFTER**: Include `// REASON:` with technical explanation
+4. **VERIFY**: Ensure original code is preserved as comment
+5. **TEST**: Verify the change works as expected
+6. **DOCUMENT**: Update any related documentation
+
+## Prohibited Actions
+
+- Deleting original code without commenting it out
+- Making changes without explaining the reason
+- Using vague or unclear comments
+- Skipping the commenting process for any code changes
+- Removing comments that document previous changes
+
+## Quality Assurance
+
+- **REVIEW**: All changes must be self-documenting through comments
+- **TRACE**: Every change should be traceable back to its original form
+- **UNDERSTAND**: Comments should make the reasoning clear to other developers
+- **MAINTAIN**: Keep the commenting style consistent across the project 

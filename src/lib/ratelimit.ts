@@ -8,7 +8,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 // Production: 10 requests per 10 seconds (more permissive for real users)
 // Testing/Development: 20 requests per 10 seconds (more permissive for development)
-const requests = isProduction ? 10 : 20;
+const requests = isProduction ? 20 : 40;
 const window = isProduction ? "10s" : "10s";
 
 export const ratelimit = new Ratelimit({
